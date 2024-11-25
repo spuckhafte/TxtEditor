@@ -2,9 +2,6 @@ package helpers.utils;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.font.TextAttribute;
-import java.util.HashMap;
-import java.util.Map;
 
 public class MyButton extends JButton  {
     static final int STD_WIDTH = 50;
@@ -17,7 +14,7 @@ public class MyButton extends JButton  {
     }
 
     public MyButton(MyImage img) {
-        super(img.scale(STD_WIDTH, STD_HEIGHT));
+        super(img.scale(STD_WIDTH - 20, STD_HEIGHT));
     }
 
     public void setStdButtonStyle() {
@@ -30,21 +27,14 @@ public class MyButton extends JButton  {
         Font customFont = new Font("Arial", Font.PLAIN, 18);
 
         if (buttonType == 'B')
-            customFont = customFont.deriveFont(Font.BOLD);
+            customFont = MyFont.getBold(customFont);
         else if (buttonType == 'I')
-            customFont = customFont.deriveFont(Font.BOLD | Font.ITALIC);
+            customFont = MyFont.getBoldItalic(customFont);
         else {
             if (buttonType == 'U') {
-                Map<TextAttribute, Object> attributes = new HashMap<>(customFont.getAttributes());
-                attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
-                customFont = customFont.deriveFont(attributes);
-                customFont = customFont.deriveFont(Font.BOLD);
-
+                customFont = MyFont.getBoldUnderline(customFont);
             } else if (buttonType == 'S') {
-                Map<TextAttribute, Object> attributes = new HashMap<>(customFont.getAttributes());
-                attributes.put(TextAttribute.STRIKETHROUGH, TextAttribute.STRIKETHROUGH_ON);
-                customFont = customFont.deriveFont(attributes);
-                customFont = customFont.deriveFont(Font.BOLD);
+                customFont = MyFont.getBoldStrike(customFont);
             }
         }
 

@@ -1,6 +1,6 @@
 package helpers.components;
 
-import helpers.utils.Screen;
+import helpers.utils.MyScreen;
 
 import javax.swing.*;
 
@@ -10,6 +10,6 @@ public class GuiFrame extends JFrame {
 
         this.setSize(width, height);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Screen.setWindowLocationOnScreen(this);
+        MyScreen.setWindowLocationOnScreen(this);
     }
 }
