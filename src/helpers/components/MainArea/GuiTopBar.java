@@ -1,11 +1,13 @@
 package helpers.components.MainArea;
 
 import helpers.utils.MyButton;
+import helpers.utils.MyChanges;
 import helpers.utils.MyFont;
 import helpers.utils.MyImage;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ItemEvent;
 import java.util.stream.IntStream;
 
 public class GuiTopBar extends JPanel {
@@ -23,6 +25,7 @@ public class GuiTopBar extends JPanel {
     };
 
     String[] availableFonts = MyFont.getAllFonts();
+    int[] selectableFontSizeRange = { 4, 50 };
 
     public GuiTopBar(GuiMain mainArea) {
         super();
@@ -47,17 +50,50 @@ public class GuiTopBar extends JPanel {
 
         JComboBox<String> fontStyleSelector = new JComboBox<>(availableFonts);
         fontStyleSelector.setSelectedItem(MyFont.DEFAULT_FONT_STYLE);
-        fontStyleSelector.setPreferredSize(new Dimension(fontStyleSelector.getPreferredSize().width, 30));
-        fontStyleSelector.setFont(new Font("Serif bold", Font.BOLD, MyFont.DEFAULT_FONT_SIZE));
+        fontStyleSelector.setPreferredSize(new Dimension(
+                fontStyleSelector.getPreferredSize().width,
+                30
+        ));
+        fontStyleSelector.setFont(new Font(
+                "Serif bold",
+                Font.BOLD,
+                MyFont.DEFAULT_FONT_SIZE
+        ));
         this.add(fontStyleSelector);
 
         JComboBox<Integer> fontSizeSelector = new JComboBox<>(
-                IntStream.rangeClosed(4, 50).boxed().toArray(Integer[]::new)
+                IntStream.rangeClosed(
+                        selectableFontSizeRange[0],
+                        selectableFontSizeRange[1]
+                ).boxed().toArray(Integer[]::new)
         );
         fontSizeSelector.setSelectedItem(MyFont.DEFAULT_FONT_SIZE);
-        fontSizeSelector.setPreferredSize(new Dimension(fontSizeSelector.getPreferredSize().width + 5, 30));
-        fontSizeSelector.setFont(new Font("Serif bold", Font.BOLD, MyFont.DEFAULT_FONT_SIZE));
+        fontSizeSelector.setPreferredSize(new Dimension(
+                fontSizeSelector.getPreferredSize().width + 5,
+                30
+        ));
+        fontSizeSelector.setFont(new Font(
+                "Serif bold",
+                Font.BOLD,
+                MyFont.DEFAULT_FONT_SIZE
+        ));
         this.add(fontSizeSelector);
+
+        fontStyleSelector.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                MyChanges.initiateChange("textAreaFont", new Font(
+                        (String) e.getItem(), Font.PLAIN, -1
+                ));
+            }
+        });
+
+        fontSizeSelector.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                MyChanges.initiateChange("textAreaFont", new Font(
+                        "", Font.PLAIN, (int) e.getItem()
+                ));
+            }
+        });
 
         mainArea.add(this);
     }
