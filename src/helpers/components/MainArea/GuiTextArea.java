@@ -19,7 +19,7 @@ public class GuiTextArea extends JTextArea {
                 MyFont.DEFAULT_FONT_SIZE
         ));
 
-        MyChanges.<Font>listenToChange("textAreaFont", updatedFont -> {
+        MyChanges.<Font>listen("textAreaFont", updatedFont -> {
             String fontName = this.getFont().getFontName();
             int fontSize = this.getFont().getSize();
 

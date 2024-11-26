@@ -81,7 +81,7 @@ public class GuiTopBar extends JPanel {
 
         fontStyleSelector.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
-                MyChanges.initiateChange("textAreaFont", new Font(
+                MyChanges.initiate("textAreaFont", new Font(
                         (String) e.getItem(), Font.PLAIN, -1
                 ));
             }
@@ -89,7 +89,7 @@ public class GuiTopBar extends JPanel {
 
         fontSizeSelector.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
-                MyChanges.initiateChange("textAreaFont", new Font(
+                MyChanges.initiate("textAreaFont", new Font(
                         "", Font.PLAIN, (int) e.getItem()
                 ));
             }
