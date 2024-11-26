@@ -29,12 +29,12 @@ public class GuiTopBar extends JPanel {
 
         JPanel formatTextGroup = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
         for (MyButton btn : buttonGroup1) {
-            btn.setStdButtonStyle();
+            btn.setStyleToFormattingButton();
             formatTextGroup.add(btn);
         }
         formatTextGroup.add(Box.createRigidArea(new Dimension(8, 0)));
         for (MyButton btn : buttonGroup2) {
-            btn.setStdButtonStyle();
+            btn.setStyleToFormattingButton();
             formatTextGroup.add(btn);
         }
 

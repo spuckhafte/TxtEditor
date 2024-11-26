@@ -17,7 +17,7 @@ public class MyButton extends JButton  {
         super(img.scale(STD_WIDTH - 20, STD_HEIGHT));
     }
 
-    public void setStdButtonStyle() {
+    public void setStyleToFormattingButton() {
         this.setPreferredSize(new Dimension(STD_WIDTH, STD_HEIGHT));
 
         if (this.getText().isEmpty())
