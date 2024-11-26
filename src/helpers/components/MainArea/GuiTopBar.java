@@ -6,9 +6,6 @@ import helpers.utils.MyImage;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.lang.reflect.Array;
 import java.util.stream.IntStream;
 
 public class GuiTopBar extends JPanel {
@@ -48,13 +45,13 @@ public class GuiTopBar extends JPanel {
         this.add(formatTextGroup);
         this.add(Box.createHorizontalGlue());
 
-        JComboBox<String> fontStyleSelector = new JComboBox<String>(availableFonts);
+        JComboBox<String> fontStyleSelector = new JComboBox<>(availableFonts);
         fontStyleSelector.setSelectedItem(MyFont.DEFAULT_FONT_STYLE);
         fontStyleSelector.setPreferredSize(new Dimension(fontStyleSelector.getPreferredSize().width, 30));
         fontStyleSelector.setFont(new Font("Serif bold", Font.BOLD, MyFont.DEFAULT_FONT_SIZE));
         this.add(fontStyleSelector);
 
-        JComboBox<Integer> fontSizeSelector = new JComboBox<Integer>(
+        JComboBox<Integer> fontSizeSelector = new JComboBox<>(
                 IntStream.rangeClosed(4, 50).boxed().toArray(Integer[]::new)
         );
         fontSizeSelector.setSelectedItem(MyFont.DEFAULT_FONT_SIZE);
