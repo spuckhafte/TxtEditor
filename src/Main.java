@@ -5,7 +5,7 @@ import helpers.components.TopMenu.GuiMenuBar;
 public class Main {
     public static void main(String[] args) {
         GuiFrame frame = new GuiFrame(
-                "Txt Editor",
+                "TxtEditor",
                 1200, 700
         );
 
