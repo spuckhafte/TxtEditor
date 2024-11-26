@@ -1,5 +1,7 @@
 package helpers.components.MainArea;
 
+import helpers.utils.MyFont;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -8,10 +10,9 @@ public class GuiTextArea extends JTextArea {
         super();
         this.setLineWrap(true);
         this.setWrapStyleWord(true);
-        this.setMargin(new Insets(10, 10, 10, 10));
+        this.setMargin(new Insets(5, 5, 5, 5));
 
-        this.setFont(new Font("Serif", Font.PLAIN, 16));
-
+        this.setFont(new Font(MyFont.DEFAULT_FONT_STYLE, Font.PLAIN, MyFont.DEFAULT_FONT_SIZE));
         mainArea.add(this);
     }
 }
