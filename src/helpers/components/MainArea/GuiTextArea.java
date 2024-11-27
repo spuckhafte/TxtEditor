@@ -35,6 +35,7 @@ public class GuiTextArea extends JTextArea {
         });
 
         MyChanges.<String>listen("textAreaAlignment", updatedAlignment -> {
+            // DOESN'T WORK GOOD
             if (updatedAlignment.equals("left-align"))
                 this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
             if (updatedAlignment.equals("right-align"))

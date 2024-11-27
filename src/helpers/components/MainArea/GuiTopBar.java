@@ -46,9 +46,7 @@ public class GuiTopBar extends JPanel {
             btn.setStyleToFormattingButton();
             formatTextGroup.add(btn);
 
-            btn.addActionListener(_ -> {
-                MyChanges.initiate("textAreaAlignment", btn.getName());
-            });
+            btn.addActionListener(_ -> MyChanges.initiate("textAreaAlignment", btn.getName()));
         }
 
         this.add(formatTextGroup);
