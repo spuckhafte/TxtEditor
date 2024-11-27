@@ -13,8 +13,9 @@ public class MyButton extends JButton  {
         this.setFocusPainted(false);
     }
 
-    public MyButton(MyImage img) {
+    public MyButton(MyImage img, String name) {
         super(img.scale(STD_WIDTH - 20, STD_HEIGHT));
+        this.setName(name);
     }
 
     public void setStyleToFormattingButton() {

@@ -19,16 +19,26 @@ public class GuiTextArea extends JTextArea {
                 MyFont.DEFAULT_FONT_SIZE
         ));
 
-        MyChanges.<Font>listen("textAreaFont", updatedFont -> {
-            String fontName = this.getFont().getFontName();
-            int fontSize = this.getFont().getSize();
+        MyChanges.<String[]>listen("textAreaFont", updatedFont -> {
+            String fontName = updatedFont[0].isEmpty()
+                    ? this.getFont().getFontName()
+                    : updatedFont[0];
 
-            if (!updatedFont.getFontName().isEmpty())
-                fontName = updatedFont.getFontName();
-            if (updatedFont.getSize() != -1)
-                fontSize = updatedFont.getSize();
+            int fontSize = updatedFont[1].isEmpty()
+                    ? this.getFont().getSize()
+                    : Integer.parseInt(updatedFont[1]);
 
-            this.setFont(new Font(fontName, this.getFont().getStyle(), fontSize));
+            System.out.println(fontSize + " " + updatedFont[1]);
+
+            this.setFont(new Font(fontName, Font.PLAIN, fontSize));
+            return 0;
+        });
+
+        MyChanges.<String>listen("textAreaAlignment", updatedAlignment -> {
+            if (updatedAlignment.equals("left-align"))
+                this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+            if (updatedAlignment.equals("right-align"))
+                this.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 
             return 0;
         });

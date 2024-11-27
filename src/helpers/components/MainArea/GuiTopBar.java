@@ -19,9 +19,9 @@ public class GuiTopBar extends JPanel {
     };
 
     MyButton[] buttonGroup2 = {
-            new MyButton(new MyImage("left_align.png")),
-            new MyButton(new MyImage("center_align.png")),
-            new MyButton(new MyImage("right_align.png")),
+            new MyButton(new MyImage("left_align.png"), "left-align"),
+            new MyButton(new MyImage("center_align.png"), "center-align"),
+            new MyButton(new MyImage("right_align.png"), "right-align"),
     };
 
     String[] availableFonts = MyFont.getAllFonts();
@@ -32,17 +32,23 @@ public class GuiTopBar extends JPanel {
 
         this.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 10));
-        //this.setBackground(Color.WHITE);
 
         JPanel formatTextGroup = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+
         for (MyButton btn : buttonGroup1) {
             btn.setStyleToFormattingButton();
             formatTextGroup.add(btn);
         }
+
         formatTextGroup.add(Box.createRigidArea(new Dimension(8, 0)));
+
         for (MyButton btn : buttonGroup2) {
             btn.setStyleToFormattingButton();
             formatTextGroup.add(btn);
+
+            btn.addActionListener(_ -> {
+                MyChanges.initiate("textAreaAlignment", btn.getName());
+            });
         }
 
         this.add(formatTextGroup);
@@ -80,18 +86,21 @@ public class GuiTopBar extends JPanel {
         this.add(fontSizeSelector);
 
         fontStyleSelector.addItemListener(e -> {
+            var t = new String[] {""};
             if (e.getStateChange() == ItemEvent.SELECTED) {
-                MyChanges.initiate("textAreaFont", new Font(
-                        (String) e.getItem(), Font.PLAIN, -1
-                ));
+                MyChanges.initiate(
+                        "textAreaFont",
+                        new String[]{ (String) e.getItem(), "" }
+                );
             }
         });
 
         fontSizeSelector.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
-                MyChanges.initiate("textAreaFont", new Font(
-                        "", Font.PLAIN, (int) e.getItem()
-                ));
+                MyChanges.initiate(
+                        "textAreaFont",
+                        new String[]{ "", String.valueOf((int) e.getItem()) }
+                );
             }
         });
 
